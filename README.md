@@ -1,3 +1,3 @@
-# leetcode
+# leetcode + GeeksForGeeks
 
-# Answers of leetcode questions that pass.
+# Answers of leetcode and GFG questions
