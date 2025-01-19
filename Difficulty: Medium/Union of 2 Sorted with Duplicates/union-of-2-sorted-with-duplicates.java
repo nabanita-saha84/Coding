@@ -54,10 +54,7 @@ class Solution {
         int i=0, j=0;
         while(i<n1 && j<n2){
             int ele;
-            if(a[i]==b[j]){
-                ele=a[i];
-                list.add(ele);
-            } else if(a[i]<b[j]){
+            if(a[i]<=b[j]){
                 ele=a[i];
                 list.add(ele);
             } else{
@@ -66,7 +63,6 @@ class Solution {
             }
             while(i<n1 && ele==a[i])    i++;
             while(j<n2 && ele==b[j])    j++;
-            
         }
         
         while(i<n1){
