@@ -1,28 +1,36 @@
 class Solution {
     public void nextPermutation(int[] nums) {
-        int n = nums.length-1;
-        int i=n;
+        int n = nums.length;
+        int i = n-1;
 
         while(i>0 && nums[i]<=nums[i-1]){
             i--;
         }
 
         if(i==0){
-            Arrays.sort(nums);
+            reverse(nums, 0, n);
             return;
         }
-        else{
-            int t = nums[i-1];
-            int nearest=i;
-            for(int j=i; j<=n; j++){
-                if(nums[j]>t && nums[j]<nums[nearest]){
-                    nearest = j;
-                }
-            }
-            nums[i-1] = nums[nearest];
-            nums[nearest] = t;
-            Arrays.sort(nums, i, n+1);
-        }
 
+        reverse(nums, i, n);
+        for(int j = i; j<n; j++){
+            if(nums[j]>nums[i-1]){
+                swap(nums, j, i-1);
+                break;
+            }
+        }
+    }
+
+    public void reverse(int[] a, int l, int r){
+        int n = (r-l)/2;
+        for(int i=0; i<n; i++){
+            swap(a, i+l, r-1-i);
+        }
+    }
+
+    public void swap(int[] a, int i, int j){
+        int t = a[i];
+        a[i] = a[j];
+        a[j] = t;
     }
 }
