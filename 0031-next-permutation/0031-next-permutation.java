@@ -23,5 +23,6 @@ class Solution {
             nums[nearest] = t;
             Arrays.sort(nums, i, n+1);
         }
+
     }
 }
