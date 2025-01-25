@@ -15,8 +15,8 @@ class Solution {
                 int prev = i;
                 int curr = 1;
                 while(set.contains(prev+1)){
-                    prev = prev+1;
-                    curr = curr+1;
+                    prev++;
+                    curr++;
                 }
                 max = Math.max(max, curr);
             }
