@@ -1,6 +1,6 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        String reformattedString = s.replaceAll("[^A-Za-z]+", "").trim().toLowerCase();
+        String reformattedString = s.replaceAll("[^A-Za-z0-9]+", "").trim().toLowerCase();
         return palindrome(reformattedString);
     }
 
