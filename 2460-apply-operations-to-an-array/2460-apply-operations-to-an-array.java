@@ -6,16 +6,13 @@ class Solution {
                 nums[i+1]=0;
             }
         }
-        int[] arr = new int[nums.length];
         int k=0;
-        for(int i: nums){
+        for(int i : nums){
             if(i!=0){
-                arr[k++]=i;
+                nums[k++]=i;
             }
         }
-        // for(; k<nums.length; k++){
-        //     arr[k]=0;
-        // }
-        return arr;
+        for(; k<nums.length; k++)   nums[k]=0;
+        return nums;
     }
 }
