@@ -10,8 +10,6 @@ class Solution {
             base7 = (num%7) + base7;
             num /= 7;
         }
-
         return neg?("-"+base7):base7;
-        
     }
 }
