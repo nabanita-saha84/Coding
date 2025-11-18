@@ -1,19 +1,17 @@
 class Solution {
     public String convertToBase7(int num) {
-        String s = "";
-        String neg="";
-        if(num==0){
-            return "0";
-        }
-        if(num<0){
-            num=-num;
-            neg="-";
-        }
+        if(num==0)  return "0";
+
+        String base7 = "";
+        boolean neg=false;
+        if(num<0)   neg=true;
+        num = Math.abs(num);
         while(num!=0){
-            int rem = num%7;
-            s = rem+s;
-            num = num/7;
+            base7 = (num%7) + base7;
+            num /= 7;
         }
-        return neg+s;
+
+        return neg?("-"+base7):base7;
+        
     }
 }
