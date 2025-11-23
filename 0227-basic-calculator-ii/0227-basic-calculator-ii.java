@@ -1,38 +1,35 @@
 class Solution {
     public int calculate(String s) {
-        int len = s.length();
-        
-        if (len == 0)
-        return 0;
-        Deque<Integer> results = new ArrayDeque<>();
+        Stack<Integer> stack = new Stack<>();
+        int res = 0, num = 0;
         char sign = '+';
-        int token = 0, n = s.length();
-        for(int i = 0; i < n; i++) {
-            char ch = s.charAt(i);
-            if(ch == ' ' && i != n - 1) {
-                continue;
+
+        for(int i=0; i<s.length(); i++){
+            char c = s.charAt(i);
+            if(c==' '){
+                if(i!=s.length()-1)
+                    continue;
             }
-            if('0' <= ch && ch <= '9') {
-                token = token * 10 + ch - '0';
-                if(i != n - 1) {
+            if('0'<=c && c<='9'){
+                num = num*10 + (c-'0');
+                if(i!=s.length()-1){
                     continue;
                 }
             }
-            if(sign == '+') {
-                results.push(token);
-            } else if(sign == '-') {
-                results.push(-token);
-            } else if(sign == '*') {
-                results.push(results.pop() * token);
-            } else { // sign is /
-                results.push(results.pop() / token);
+            if(sign=='+'){
+                stack.push(num);
+            } else if(sign=='-'){
+                stack.push(-num);
+            } else if(sign=='*'){
+                stack.push(stack.pop()*num);
+            } else if(sign=='/'){
+                stack.push(stack.pop()/num);
             }
-            token = 0;
-            sign = ch;
+            num=0;
+            sign=c;
         }
-        int res = 0;
-        while(results.size() > 0) {
-            res += results.pop();
+        while(!stack.isEmpty()){
+            res = res+stack.pop();
         }
         return res;
     }
