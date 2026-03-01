@@ -13,31 +13,31 @@ class Solution {
         ListNode list = new ListNode();
         ListNode head = list;
 
-        int sum = 0, frwd = 0;
+        int sum = 0, carry = 0;
         while (l1 != null && l2 != null) {
-            sum = l1.val + l2.val + frwd;
+            sum = l1.val + l2.val + carry;
             list.next = new ListNode(sum % 10);
             list = list.next;
-            frwd = sum / 10;
+            carry = sum / 10;
             l1 = l1.next;
             l2 = l2.next;
         }
         while (l1 != null) {
-            sum = l1.val + frwd;
+            sum = l1.val + carry;
             list.next = new ListNode(sum % 10);
             list = list.next;
-            frwd = sum / 10;
+            carry = sum / 10;
             l1 = l1.next;
         }
         while (l2 != null) {
-            sum = l2.val + frwd;
+            sum = l2.val + carry;
             list.next = new ListNode(sum % 10);
             list = list.next;
-            frwd = sum / 10;
+            carry = sum / 10;
             l2 = l2.next;
         }
-        if (frwd != 0) {
-            list.next = new ListNode(frwd);
+        if (carry != 0) {
+            list.next = new ListNode(carry);
         }
         return head.next;
     }
