@@ -1,26 +1,28 @@
 class Solution {
-    private void solve(List<List<Integer>> ans, List<Integer> curr, int sum,int left, int currNum) {
-        if(currNum>10) {
+    
+    private void solve(List<List<Integer>> ans,List<Integer> curr, int sum, int next_start,int k) {
+        if(sum==0 && curr.size()==k) {
+            ans.add(new ArrayList<>(curr));
             return;
         }
-        if(currNum==10) {
-            if(sum==0 && left==0) {
-                ans.add(new ArrayList<>(curr));
-                return;
+        if(sum<0 || curr.size()==k) {
+            return;
+        }
+
+        for(int i=next_start;i<=9;i++) {
+            if(i<=sum) {
+                curr.add(i);
+                solve(ans,curr,sum-i,i+1,k);
+                curr.remove(curr.size()-1);
+            } else {
+                break;
             }
         }
-        //pick
-        curr.add(currNum);
-        solve(ans,curr,sum-currNum,left-1,currNum+1);
-        curr.remove(curr.size()-1);
-
-        //not_pick
-        solve(ans,curr,sum,left,currNum+1);
     }
- 
+    
     public List<List<Integer>> combinationSum3(int k, int n) {
         List<List<Integer>> ans = new ArrayList<>();
-        solve(ans,new ArrayList<>(),n,k,1);
+        solve(ans,new ArrayList<>(),n,1,k);
         return ans;
     }
 }
